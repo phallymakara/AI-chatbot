@@ -7,6 +7,17 @@ python-multipart
 python-dotenv
 azure-identity
 pydantic
+pydantic-settings
+PyJWT[crypto]
+requests
+
+# Web Scraping
+beautifulsoup4
+trafilatura
+lxml_html_clean
+
+# Database
+pyodbc
 
 # LLM & Tokenization
 openai
