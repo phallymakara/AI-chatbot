@@ -1,6 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+/**
+ * Represents a document in the administrative system.
+ */
 export interface AdminDocument {
   id: string;
   name: string;
@@ -11,6 +14,9 @@ export interface AdminDocument {
   uploadedAt: number;
 }
 
+/**
+ * System-wide performance and usage metrics for the admin dashboard.
+ */
 export interface AdminMetrics {
   totalQueries: number;
   activeUsers: number;
@@ -20,6 +26,9 @@ export interface AdminMetrics {
   systemHealth: "healthy" | "degraded" | "down";
 }
 
+/**
+ * The state and actions for managing administrative tasks.
+ */
 interface AdminState {
   documents: AdminDocument[];
   metrics: AdminMetrics;
@@ -42,6 +51,9 @@ interface AdminState {
   setUploadError: (error: string | null) => void;
 }
 
+/**
+ * Zustand store for managing admin-related state.
+ */
 export const useAdminStore = create<AdminState>()(
   persist(
     (set) => ({

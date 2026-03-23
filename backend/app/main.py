@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from fastapi.middleware.cors import CORSMiddleware # FastAPI middleware for Cross-Origin Resource Sharing
+from fastapi.middleware.cors import CORSMiddleware
 from app.routes.chat import router as chat_router
 from app.routes.upload import router as upload_router
 from app.middleware.auth import get_current_user
@@ -10,13 +10,13 @@ logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 
-# Configure CORS middleware to permit requests from the frontend application
+# Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Broad origin permit for the chatbot frontend
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Permit all standard HTTP methods
-    allow_headers=["*"],  # Permit all standard HTTP headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(chat_router, dependencies=[Depends(get_current_user)])

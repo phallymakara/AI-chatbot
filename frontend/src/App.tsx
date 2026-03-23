@@ -12,7 +12,7 @@ function App() {
 
   const [isReady, setIsReady] = useState(true);
 
-  // 🔄 Router
+  // Router
   useEffect(() => {
     const handleHashChange = () => {
       setCurrentPath(window.location.hash || "#/welcome");
@@ -22,7 +22,7 @@ function App() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  // 🔐 MOCK LOGIN FOR TESTING
+  // MOCK LOGIN FOR TESTING
   const account = {
     username: "test@example.com",
     name: "Test User",
@@ -61,12 +61,12 @@ function App() {
     }
   }, [isReady, callApi]);
 
-  // ⏳ WAIT until ready
+  // WAIT until ready
   if (!isReady) {
     return <div>Loading...</div>;
   }
 
-  // ✅ LOGGED IN UI (ALWAYS LOGGED IN FOR TESTING)
+  // LOGGED IN UI (ALWAYS LOGGED IN FOR TESTING)
 
   if (currentPath === "#/chat") {
     return (

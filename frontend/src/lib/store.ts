@@ -2,6 +2,9 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { Message } from "./openai";
 
+/**
+ * Represents a single chat conversation thread.
+ */
 export interface Conversation {
   id: string;
   title: string;
@@ -10,6 +13,9 @@ export interface Conversation {
   updatedAt: number;
 }
 
+/**
+ * State and actions for the main chat store.
+ */
 interface ChatStore {
   conversations: Conversation[];
   activeConversationId: string | null;
@@ -28,6 +34,9 @@ interface ChatStore {
   getActiveConversation: () => Conversation | null;
 }
 
+/**
+ * Zustand store for managing chat history and active conversations.
+ */
 export const useChatStore = create<ChatStore>()(
   persist(
     (set, get) => ({

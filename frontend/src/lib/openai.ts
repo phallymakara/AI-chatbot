@@ -1,3 +1,6 @@
+/**
+ * Represents a document source used as context for the AI response.
+ */
 export interface Source {
   title: string;
   link: string;
@@ -7,7 +10,7 @@ export interface Source {
 }
 
 /**
- * Chat message structure
+ * Structure of a single message in a chat conversation.
  */
 export interface Message {
   role: "system" | "user" | "assistant";
@@ -16,7 +19,7 @@ export interface Message {
 }
 
 /**
- * Metadata returned at end of stream
+ * Metadata structure returned at the end of an LLM stream.
  */
 interface StreamMeta {
   sources?: Array<{
@@ -29,7 +32,13 @@ interface StreamMeta {
 const API_URL = import.meta.env.VITE_LLM_API_URL;
 
 /**
- * Streaming LLM request
+ * Sends a chat message to the LLM API and handles the streaming response.
+ *
+ * @param messages - The history of messages in the conversation.
+ * @param onToken - Callback function triggered for each new text chunk received.
+ * @param onSources - Callback function triggered when document sources are identified.
+ * @param accessToken - Optional authentication token for the API.
+ * @returns A promise that resolves when the stream is fully consumed.
  */
 export async function askLLMStream(
   messages: Message[],
